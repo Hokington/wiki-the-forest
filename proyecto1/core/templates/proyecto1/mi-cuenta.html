@@ -39,7 +39,10 @@
       <div class="perfil-usuario-header">
         <div class="perfil-usuario-portada">
           <div class="perfil-usuario-avatar">
-            <img src="img_wiki/user.png" alt="img-avatar" />
+            <img
+              src="{% static 'core/img/users/' {{ imagen }} %}"
+              alt="img-avatar"
+            />
             <button type="button" class="boton-avatar">
               <i class="far fa-image"></i>
             </button>
@@ -48,11 +51,24 @@
       </div>
       <div class="perfil-usuario-body">
         <div class="perfil-usuario-bio">
-          <h3 class="titulo">Ngolo Kante</h3>
+          <h3 class="titulo">{{ username }}</h3>
         </div>
         <div class="perfil-usuario-footer">
-          <ul class="lista-datos">
-            <li>
+          <form
+            action="{% url 'mi-cuenta' %}"
+            method="post"
+            class="lista-datos"
+          >
+            {% csrf_token %}
+
+            <li
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 3px;
+              "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -67,9 +83,27 @@
                   d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
                 />
               </svg>
-              <i class="bi bi-person-circle"></i> Nombre de Usuario: Ngolo Kante
+              <i class="bi bi-person-circle"></i>
+              <div
+                style="
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <label for="name">Nombre de Usuario: </label>
+                <input type="text" name="name" value="{{ username }}" />
+              </div>
             </li>
-            <li>
+            <li
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 3px;
+              "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -82,9 +116,32 @@
                   d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"
                 />
               </svg>
-              <i class="bi bi-envelope-fill"></i> Email: kantegod@gmail.com
+              <i class="bi bi-envelope-fill"></i>
+              <div
+                style="
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <label for="email">Email: </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value="{{ email }}"
+                />
+              </div>
             </li>
-            <li>
+            <li
+              style="
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 3px;
+              "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -97,14 +154,30 @@
                   d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
                 />
               </svg>
-              <i class="bi bi-key-fill"></i> Contraseña: ngolito777
+              <i class="bi bi-key-fill"></i>
+              <div
+                style="
+                  display: flex;
+                  justify-content: start;
+                  align-items: center;
+                  gap: 3px;
+                "
+              >
+                <label for="password"> Contraseña: </label>
+                <input
+                  type="text"
+                  name="password"
+                  id="password"
+                  value="{{ password }}"
+                />
+              </div>
             </li>
             <div class="w-33">
               <div class="center">
-                <button class="btn btn-dark">Editar</button>
+                <button class="btn btn-dark">Guardar Cambios</button>
               </div>
             </div>
-          </ul>
+          </form>
         </div>
       </div>
     </section>

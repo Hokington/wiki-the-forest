@@ -70,10 +70,28 @@
         >
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 mb-auto w-100"></div>
           <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
+            {% if mensaje %}
+            <div
+              style="
+                text-align: center;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 10px;
+              "
+            >
+              <p style="padding: 1px; margin: 0">{{ mensaje }}</p>
+            </div>
+            {% endif %}
             <h1 class="font-weight-bold mb-4" id="subir">
               Bienvenido Ingresa tu Usuario
             </h1>
-            <form class="mb-5">
+            <form
+              novalidate
+              method="post"
+              action="{% url 'login' %}"
+              class="mb-5"
+            >
+              {% csrf_token %}
               <div class="mb-4">
                 <label
                   for="exampleInputEmail1"
@@ -81,10 +99,11 @@
                   >Email</label
                 >
                 <input
+                  name="email"
                   type="email"
                   class="form-control bg-dark-x border-0"
                   id="exampleInputEmail1"
-                  placeholder="I"
+                  placeholder=""
                   aria-describedby="emailHelp"
                   style="background-color: #ffffff"
                 />
@@ -96,8 +115,9 @@
                   >Contraseña</label
                 >
                 <input
+                  name="password"
                   type="password"
-                  value="FakePSW"
+                  value=""
                   id="myInput"
                   class="form-control bg-dark-x border-0 mb-2"
                   placeholder="Ingresa tu contraseña"
@@ -117,7 +137,7 @@
                   ¿Has olvidado tu contraseña?</a
                 >
               </div>
-              <a href="{% url 'mi-cuenta' %}" class="button">Iniciar sesion</a>
+              <button class="button">Iniciar sesion</button>
             </form>
           </div>
           <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100">
@@ -132,6 +152,7 @@
       </div>
     </section>
     {% include 'proyecto1/components/footer.html' %}
+
     <script>
       function myFunction() {
         var x = document.getElementById("myInput");

@@ -70,8 +70,35 @@
         >
           <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4 mb-auto w-100"></div>
           <div class="align-self-center w-100 px-lg-5 py-lg-4 p-4">
+            {% if mensaje %}
+            <div
+              style="
+                text-align: center;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 10px;
+              "
+            >
+              <p style="padding: 1px; margin: 0">{{ mensaje }}</p>
+            </div>
+            {% endif %}
             <h1 class="font-weight-bold mb-4" id="subir">Ingrese sus Datos</h1>
-            <form class="mb-5">
+            <form action="{% url 'registro' %}" method="post" class="mb-5">
+              {% csrf_token %}
+              <div class="mb-4">
+                <label for="name" class="form-label font-weight-bold"
+                  >Nombre</label
+                >
+                <input
+                  required
+                  type="text"
+                  class="form-control bg-dark-x border-0"
+                  id="name"
+                  name="name"
+                  placeholder="usuario420"
+                  style="background-color: #ffffff"
+                />
+              </div>
               <div class="mb-4">
                 <label
                   for="exampleInputEmail1"
@@ -79,6 +106,8 @@
                   >Email</label
                 >
                 <input
+                  required
+                  name="email"
                   type="email"
                   class="form-control bg-dark-x border-0"
                   id="exampleInputEmail1"
@@ -88,36 +117,36 @@
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="exampleInputEmail1"
-                  class="form-label font-weight-bold"
+                <label for="password" class="form-label font-weight-bold"
                   >Contraseña</label
                 >
                 <input
-                  type="email"
+                  required
+                  type="password"
+                  name="password"
                   class="form-control bg-dark-x border-0"
-                  id="exampleInputEmail1"
+                  id="password"
                   placeholder="Ingrese su contraseña"
                   aria-describedby="emailHelp"
                   style="background-color: #ffffff"
                 />
               </div>
               <div class="mb-4">
-                <label
-                  for="exampleInputEmail1"
-                  class="form-label font-weight-bold"
+                <label for="confirmation" class="form-label font-weight-bold"
                   >Confirme su contraseña</label
                 >
                 <input
-                  type="email"
+                  required
+                  type="password"
                   class="form-control bg-dark-x border-0"
-                  id="exampleInputEmail1"
+                  id="confirmation"
+                  name="confirmation"
                   placeholder="Vuelva a ingresar su contraseña"
                   aria-describedby="emailHelp"
                   style="background-color: #ffffff"
                 />
               </div>
-              <a href="menuprincipal_wiki.html" class="button">Crear cuenta</a>
+              <button class="button">Crear cuenta</button>
             </form>
           </div>
           <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 p-4 mt-auto w-100">
